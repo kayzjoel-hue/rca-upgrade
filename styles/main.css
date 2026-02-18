@@ -1,0 +1,19 @@
+/* Custom Styles */
+.glass-nav {
+  background: rgba(250, 249, 246, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(74, 20, 21, 0.08);
+}
+.hero-overlay {
+  background: linear-gradient(to bottom, rgba(18,18,18,0.3), rgba(18,18,18,0.7));
+}
+/* Hide scrollbar for AI output */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.carousel-track { width: max-content; }
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
