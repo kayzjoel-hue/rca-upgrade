@@ -1,23 +1,38 @@
 {
   "version": 2,
-  "builds": [
+  "buildCommand": "echo 'No build needed'",
+  "outputDirectory": ".",
+  "env": {
+    "GEMINI_API_KEY": "@gemini_api_key"
+  },
+  "rewrites": [
     {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
     },
     {
-      "src": "**/*",
-      "use": "@vercel/static"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
-  "routes": [
+  "headers": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, must-revalidate"
+        }
+      ]
     },
     {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ]
 }

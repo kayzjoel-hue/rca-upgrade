@@ -1,11 +1,16 @@
 {
   "name": "royal-connect-africa",
   "version": "1.0.0",
-  "private": true,
+  "description": "Bridging Uganda and the UAE through curated safaris, ethical trade, and legacy partnerships",
+  "main": "index.html",
+  "type": "module",
   "scripts": {
-    "build": "echo 'Static site – no frontend build needed'"
+    "dev": "vercel dev",
+    "build": "echo 'Static site with serverless functions'",
+    "start": "vercel dev"
   },
-  "engines": {
-    "node": ">=18"
-  }
+  "dependencies": {},
+  "devDependencies": {},
+  "author": "Kaizire Joel",
+  "license": "MIT"
 }

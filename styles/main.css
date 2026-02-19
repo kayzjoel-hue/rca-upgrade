@@ -1,19 +1,94 @@
-/* Custom Styles */
+/* ================================
+   Royal Connect Africa - Custom CSS
+   ================================ */
+
+/* Glass Navigation */
 .glass-nav {
   background: rgba(250, 249, 246, 0.95);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(74, 20, 21, 0.08);
 }
-.hero-overlay {
-  background: linear-gradient(to bottom, rgba(18,18,18,0.3), rgba(18,18,18,0.7));
-}
-/* Hide scrollbar for AI output */
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-.carousel-track { width: max-content; }
+/* Hero Overlay Gradient */
+.hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 18, 18, 0.3) 0%,
+    rgba(18, 18, 18, 0.5) 50%,
+    rgba(74, 20, 21, 0.7) 100%
+  );
+}
+
+/* Carousel Animation */
+.carousel-track {
+  width: max-content;
+}
+
+/* Card Hover Effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 .card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(74, 20, 21, 0.15),
+              0 10px 10px -5px rgba(74, 20, 21, 0.1);
+}
+
+/* Hide Scrollbar */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Form Focus States */
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #b3914d;
+  background-color: rgba(179, 145, 77, 0.08);
+  box-shadow: 0 0 0 3px rgba(179, 145, 77, 0.1);
+}
+
+/* Loading Spinner */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin 2s linear infinite;
+}
+
+/* Mobile Menu */
+@media (max-width: 768px) {
+  .glass-nav {
+    background: rgba(250, 249, 246, 0.98);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .glass-nav,
+  footer {
+    display: none;
+  }
 }
