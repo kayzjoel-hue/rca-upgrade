@@ -1,7 +1,11 @@
-export default async function handler(req, res) {
-  const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-  const MODEL = "gemini-1.5-flash";
+/**
+ * Royal Connect Africa - AI Concierge
+ * Serverless function for Gemini API integration
+ * Deployed on Vercel
+ */
 
+export default async function handler(req, res) {
+  // CORS support
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -14,46 +18,43 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Use POST" });
   }
 
+  const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
   if (!GEMINI_API_KEY) {
     return res.status(500).json({ error: "Missing GEMINI_API_KEY" });
   }
 
-  const { prompt } = req.body || {};
+  const { prompt, mode } = req.body;
 
-  if (!prompt) {
-    return res.status(400).json({ error: "Missing prompt" });
+  if (!prompt || typeof prompt !== "string") {
+    return res.status(400).json({ error: "Missing prompt field" });
   }
 
   try {
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           contents: [
-            {
-              parts: [{ text: prompt }]
-            }
+            { parts: [{ text: prompt }] }
           ]
         })
       }
     );
 
-    const data = await response.json();
-
     if (!response.ok) {
-      return res.status(response.status).json({ error: data });
+      const errorData = await response.json().catch(() => ({}));
+      return res.status(response.status).json({ error: errorData });
     }
 
-    const text =
-      data.candidates?.[0]?.content?.parts?.[0]?.text || "No response.";
+    const data = await response.json();
+    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
 
     return res.status(200).json({ text });
 
   } catch (err) {
+    console.error("AI handler error:", err);
     return res.status(500).json({ error: err.message });
   }
 }
