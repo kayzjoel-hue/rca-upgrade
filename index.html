@@ -264,6 +264,25 @@
       <div>
         <span class="text-royal-gold text-xs font-bold tracking-[0.3em] uppercase">Commerce</span>
         <h2 class="font-display text-4xl font-800 mt-2 mb-6">Ethical Trade Channels.</h2>
+    <!-- AI Section -->
+    <section id="ai" class="py-16 bg-royal-ink/5">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-2xl font-serif mb-8">AI-Powered Inquiry</h2>
+        <form id="ai-form" class="space-y-4">
+          <select id="mode" class="w-full p-2 border rounded">
+            <option value="safari">Safari Planner</option>
+            <option value="trade">Trade Inquiry</option>
+          </select>
+
+          <textarea id="prompt" rows="4" class="w-full p-2 border rounded" placeholder="Describe what you need..."></textarea>
+
+          <button id="generate-btn" type="submit" class="bg-black text-white px-6 py-2 rounded">Generate Draft</button>
+        </form>
+
+        <div id="result" class="mt-6"></div>
+      </div>
+    </section>
+
         <p class="text-white/70 leading-relaxed mb-8">
           We don't just move people; we move value. RCA facilitates the export of high-quality Ugandan commodities to the UAE market.
         </p>
@@ -359,6 +378,11 @@
     </div>
   </footer>
 
+  <style>
+    #result {
+      transition: all 0.2s ease;
+    }
+  </style>
   <script src="scripts/main.js"></script>
 </body>
 </html>
