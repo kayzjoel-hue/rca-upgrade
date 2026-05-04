@@ -5,12 +5,23 @@
   "main": "index.html",
   "type": "module",
   "scripts": {
-    "dev": "vercel dev",
+    "dev": "node server.js",
     "build": "echo 'Static site with serverless functions'",
-    "start": "vercel dev"
+    "start": "node server.js"
   },
-  "dependencies": {},
-  "devDependencies": {},
   "author": "Kaizire Joel",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kayzjoel-hue/rca-upgrade.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/kayzjoel-hue/rca-upgrade/issues"
+  },
+  "homepage": "https://github.com/kayzjoel-hue/rca-upgrade#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
 }

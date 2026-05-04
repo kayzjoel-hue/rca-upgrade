@@ -2,6 +2,17 @@
    Royal Connect Africa - Custom CSS
    ================================ */
 
+/* Brand variables (for easy contrast tweaks) */
+:root {
+  --royal-maroon: #4a1415;
+  --royal-gold: #b3914d;
+  --royal-gold-dark: #8a6f2f; /* darker for small text contrast */
+  --royal-emerald: #1e3814;
+  --royal-sand: #f2f0eb;
+  --royal-ink: #121212;
+  --royal-light: #faf9f6;
+}
+
 /* Glass Navigation */
 .glass-nav {
   background: rgba(250, 249, 246, 0.95);
@@ -26,10 +37,7 @@
 }
 
 /* Card Hover Effects */
-.card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
+.card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
 .card-hover:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 25px -5px rgba(74, 20, 21, 0.15),
@@ -41,69 +49,42 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+.no-scrollbar::-webkit-scrollbar { display: none; }
 
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Form Focus States */
-input:focus,
-textarea:focus {
+/* Form Focus States (accessible) */
+input:focus, textarea:focus {
   outline: none;
-  border-color: #b3914d;
-  background-color: rgba(179, 145, 77, 0.08);
-  box-shadow: 0 0 0 3px rgba(179, 145, 77, 0.1);
+  border-color: var(--royal-gold);
+  background-color: rgba(179, 145, 77, 0.06);
+  box-shadow: 0 0 0 4px rgba(179,145,77,0.08);
 }
 
 /* Loading Spinner */
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-spin-slow {
-  animation: spin 2s linear infinite;
-}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.animate-spin-slow { animation: spin 2s linear infinite; }
 
 /* Mobile Menu */
 @media (max-width: 768px) {
-  .glass-nav {
-    background: rgba(250, 249, 246, 0.98);
-  }
+  .glass-nav { background: rgba(250, 249, 246, 0.98); }
 }
 
-/* Accessibility */
+/* Accessibility: reduce motion */
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
 
 /* Print Styles */
 @media print {
-  .glass-nav,
-  footer {
-    display: none;
-  }
+  .glass-nav, footer { display: none; }
 }
-.tab-btn {
-  transition: all 0.3s ease;
-}
-.tab-btn.active {
-  border-color: #4a1415;
-  color: #4a1415;
-  font-weight: 600;
-}
-#result {
-  animation: fadeInScale 0.5s ease forwards;
-}
-@keyframes fadeInScale {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
+
+/* Tab button style */
+.tab-btn { transition: all 0.3s ease; }
+.tab-btn.active { border-color: var(--royal-maroon); color: var(--royal-maroon); font-weight: 600; }
+
+/* Result animation */
+#result { animation: fadeInScale 0.5s ease forwards; }
+@keyframes fadeInScale { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+/* Small text contrast helper */
+.text-royal-gold-small { color: var(--royal-gold-dark); }

@@ -14,7 +14,31 @@
 3. Copy the key (looks like: `AIz...`)
 4. Save it somewhere safe
 
-### Step 2: Deploy to Vercel
+### Step 2: Run Locally First
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Create a local env file
+copy .env.example .env
+
+# 3. Open .env and replace the placeholder with your new real key
+# GEMINI_API_KEY=your_new_real_key_here
+
+# 4. Start the local server
+npm run dev
+```
+
+Write the new key in `C:\Users\X1 CARBON\Desktop\RCA\rca-upgrade\.env` on the line:
+
+```env
+GEMINI_API_KEY=your_new_real_key_here
+```
+
+Then open `http://localhost:3001` and test the AI Concierge before deploying.
+
+### Step 3: Deploy to Vercel
 
 #### Option A: Via GitHub + Vercel (Recommended)
 ```bash
@@ -43,7 +67,7 @@ vercel --prod
 # Follow prompts, accept defaults
 ```
 
-### Step 3: Add API Key to Vercel
+### Step 4: Add API Key to Vercel
 
 **In Vercel Dashboard:**
 1. Go to your project → **Settings** → **Environment Variables**
@@ -54,7 +78,7 @@ vercel --prod
 3. Click **"Save"**
 4. **Redeploy** (Deployments → click latest → **Redeploy**)
 
-### Step 4: Test
+### Step 5: Test
 
 1. Go to your deployed site (e.g., `https://rca-upgrade.vercel.app`)
 2. Scroll to **"AI Concierge"** section
@@ -95,18 +119,19 @@ vercel --prod
 
 ### File Structure
 
-```
 rca-upgrade/
-├── api/ai.js                 ← Gemini backend
-├── assets/                   ← Images
-├── public/                   ← PWA manifest
-├── scripts/                  ← Client JS
-├── styles/                   ← CSS
-├── index.html                ← Main page
-├── vercel.json               ← Vercel config
-├── .env.example              ← Template
-└── README.md                 ← This file
-```
+├── index.html
+├── api/
+│   └── ai.js
+├── public/
+│   └── manifest.json
+├── scripts/
+│   └── main.js
+├── styles/
+│   └── main.css
+├── server.js              (local Express server using the live AI handler)
+├── .env.example
+└── vercel.json
 
 ### Features
 
@@ -115,6 +140,7 @@ rca-upgrade/
 ✅ **Trade Inquiry** - B2B letter drafting  
 ✅ **Mobile Responsive** - Works on all devices  
 ✅ **Fast** - Static HTML + serverless API  
+✅ **Shared Logic** - Local server and Vercel use the same AI handler  
 ✅ **Free Tier** - No recurring costs  
 
 ### Next Steps

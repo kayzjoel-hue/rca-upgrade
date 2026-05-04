@@ -1,55 +1,109 @@
-// api/ai.js — Vercel Serverless function (node/edge style)
 export default async function handler(req, res) {
-  // Only accept POST
-  if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
-    return res.status(405).json({ error: 'Method Not Allowed' });
+  if (req.method !== "POST") {
+    res.setHeader("Allow", "POST");
+    return res.status(405).json({ error: "Method Not Allowed" });
   }
 
   try {
     const { prompt, mode } = req.body || {};
-    if (!prompt || typeof prompt !== 'string' || prompt.trim().length < 3) {
-      return res.status(400).json({ error: 'Invalid prompt' });
+
+    // ✅ Validation
+    if (!prompt || typeof prompt !== "string" || prompt.trim().length < 3) {
+      return res.status(400).json({ error: "Invalid prompt" });
     }
 
-    // Basic input guard
     if (prompt.length > 4000) {
-      return res.status(400).json({ error: 'Prompt too long (max 4000 chars)' });
+      return res.status(400).json({ error: "Prompt too long (max 4000 chars)" });
     }
 
-    // If the real GEMINI_API_KEY is not set, return a helpful mock response
-    // so your frontend can function while you set the key in Vercel.
-    const KEY = process.env.GEMINI_API_KEY;
-    if (!KEY) {
-      const mock = mode === 'trade'
-        ? `**Mock Trade Proposal**\n\nReceived: ${prompt}\n\n(You can replace this mock by setting GEMINI_API_KEY in Vercel settings.)`
-        : `**Mock Safari Plan**\n\nReceived: ${prompt}\n\n(You can replace this mock by setting GEMINI_API_KEY in Vercel settings.)`;
+    const normalizedMode = mode === "trade" ? "trade" : "safari";
+    const trimmedPrompt = prompt.trim();
+
+    // ✅ System prompt (your concierge logic)
+    const systemPrompt =
+      normalizedMode === "trade"
+        ? [
+            "You are the Royal Connect Africa trade concierge.",
+            "Write a polished first-draft trade response for a Dubai-facing operator.",
+            "Keep it practical, warm, and commercially clear.",
+            "Include: overview, suggested next steps, info still needed, and a short closing.",
+            "Do not invent certifications, pricing, or legal guarantees.",
+          ].join(" ")
+        : [
+            "You are the Royal Connect Africa safari concierge.",
+            "Write a polished first-draft safari recommendation for a premium East Africa audience.",
+            "Keep it elegant, practical, and rooted in trust.",
+            "Include: suggested journey shape, likely highlights, info still needed, and a short closing.",
+            "Do not invent permits, prices, or availability.",
+          ].join(" ");
+
+    const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+
+    // ✅ Fallback if no API key (keeps frontend working)
+    if (!GEMINI_API_KEY) {
+      const mock =
+        normalizedMode === "trade"
+          ? `**Mock Trade Proposal**\n\nReceived: ${prompt}`
+          : `**Mock Safari Plan**\n\nReceived: ${prompt}`;
 
       return res.status(200).json({ text: mock });
     }
 
-    // ====== PLACEHOLDER: Replace this block with a real call to Gemini API ======
-    // Example pseudo-code (replace with actual Gemini HTTP call as per Google docs):
-    //
-    // const r = await fetch('https://api.google.com/v1/models/.../generate', {
-    //   method: 'POST',
-    //   headers: { 'Authorization': `Bearer ${KEY}`, 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ prompt, /* model params */ })
-    // });
-    // const payload = await r.json();
-    // const text = payload?.output?.[0]?.content ?? 'No text returned';
-    //
-    // For now we return a success placeholder to avoid throwing errors in production.
-    // =============================================================================
+    // ✅ Real Gemini API call
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              role: "user",
+              parts: [
+                {
+                  text: `${systemPrompt}\n\nUser request:\n${trimmedPrompt}`,
+                },
+              ],
+            },
+          ],
+          generationConfig: {
+            temperature: 0.8,
+            topK: 32,
+            topP: 0.95,
+            maxOutputTokens: 700,
+          },
+        }),
+      }
+    );
 
-    // Safe fallback: return a simple acknowledgement (the real implementation goes above)
-    const placeholder = mode === 'trade'
-      ? `**Trade proposal (placeholder)**\n\nWe received your request and will process it. (GEMINI_API_KEY present but real call not implemented yet.)`
-      : `**Safari plan (placeholder)**\n\nWe received your request and will process it. (GEMINI_API_KEY present but real call not implemented yet.)`;
+    const data = await response.json();
 
-    return res.status(200).json({ text: placeholder });
-  } catch (err) {
-    console.error('AI handler error:', err);
-    return res.status(500).json({ error: 'Server error' });
+    if (!response.ok) {
+      const message =
+        data?.error?.message || "Gemini request failed.";
+      return res.status(response.status).json({ error: message });
+    }
+
+    const text =
+      data?.candidates?.[0]?.content?.parts
+        ?.map((part) => part?.text || "")
+        .join("")
+        .trim() || "";
+
+    if (!text) {
+      return res.status(502).json({
+        error: "AI returned empty response.",
+      });
+    }
+
+    return res.status(200).json({ text });
+
+  } catch (error) {
+    console.error("AI handler error:", error);
+    return res.status(500).json({
+      error: "Server error",
+    });
   }
 }
