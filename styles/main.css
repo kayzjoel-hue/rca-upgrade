@@ -1,4 +1,4 @@
-/* ================================
+/* ================================ 
    Royal Connect Africa - Custom CSS
    ================================ */
 
@@ -13,6 +13,10 @@
   --royal-light: #faf9f6;
 }
 
+/* ================================
+   Navigation
+   ================================ */
+
 /* Glass Navigation */
 .glass-nav {
   background: rgba(250, 249, 246, 0.95);
@@ -20,6 +24,10 @@
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(74, 20, 21, 0.08);
 }
+
+/* ================================
+   Hero Section
+   ================================ */
 
 /* Hero Overlay Gradient */
 .hero-overlay {
@@ -31,60 +39,149 @@
   );
 }
 
-/* Carousel Animation */
+/* ================================
+   Components
+   ================================ */
+
+/* Carousel */
 .carousel-track {
   width: max-content;
 }
 
 /* Card Hover Effects */
-.card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .card-hover:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 25px -5px rgba(74, 20, 21, 0.15),
-              0 10px 10px -5px rgba(74, 20, 21, 0.1);
+  box-shadow: 
+    0 20px 25px -5px rgba(74, 20, 21, 0.15),
+    0 10px 10px -5px rgba(74, 20, 21, 0.1);
 }
+
+/* Tabs */
+.tab-btn {
+  transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+  border-color: var(--royal-maroon);
+  color: var(--royal-maroon);
+  font-weight: 600;
+}
+
+/* ================================
+   Forms
+   ================================ */
+
+/* Form Focus States (accessible) */
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--royal-gold);
+  background-color: rgba(179, 145, 77, 0.06);
+  box-shadow: 0 0 0 4px rgba(179, 145, 77, 0.08);
+}
+
+/* ================================
+   Utilities
+   ================================ */
 
 /* Hide Scrollbar */
 .no-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
-.no-scrollbar::-webkit-scrollbar { display: none; }
 
-/* Form Focus States (accessible) */
-input:focus, textarea:focus {
-  outline: none;
-  border-color: var(--royal-gold);
-  background-color: rgba(179, 145, 77, 0.06);
-  box-shadow: 0 0 0 4px rgba(179,145,77,0.08);
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
+/* Small text contrast helper */
+.text-royal-gold-small {
+  color: var(--royal-gold-dark);
+}
+
+/* ================================
+   Animations
+   ================================ */
+
 /* Loading Spinner */
-@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-.animate-spin-slow { animation: spin 2s linear infinite; }
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin 2s linear infinite;
+}
+
+/* Result animation */
+#result {
+  animation: fadeInScale 0.5s ease forwards;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ================================
+   AI Feedback UI (NEW - Clean replacement for inline styles)
+   ================================ */
+
+.ai-error-box {
+  color: #d32f2f;
+  padding: 16px;
+  background: #ffebee;
+  border-radius: 8px;
+  border: 1px solid rgba(211, 47, 47, 0.2);
+}
+
+.ai-error-hint {
+  font-size: 12px;
+  margin-top: 8px;
+  opacity: 0.8;
+}
+
+/* ================================
+   Responsive
+   ================================ */
 
 /* Mobile Menu */
 @media (max-width: 768px) {
-  .glass-nav { background: rgba(250, 249, 246, 0.98); }
+  .glass-nav {
+    background: rgba(250, 249, 246, 0.98);
+  }
 }
 
-/* Accessibility: reduce motion */
+/* ================================
+   Accessibility
+   ================================ */
+
+/* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
-  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
-/* Print Styles */
+/* ================================
+   Print Styles
+   ================================ */
+
 @media print {
-  .glass-nav, footer { display: none; }
+  .glass-nav,
+  footer {
+    display: none;
+  }
 }
-
-/* Tab button style */
-.tab-btn { transition: all 0.3s ease; }
-.tab-btn.active { border-color: var(--royal-maroon); color: var(--royal-maroon); font-weight: 600; }
-
-/* Result animation */
-#result { animation: fadeInScale 0.5s ease forwards; }
-@keyframes fadeInScale { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-
-/* Small text contrast helper */
-.text-royal-gold-small { color: var(--royal-gold-dark); }

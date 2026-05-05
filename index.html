@@ -6,12 +6,12 @@
   <title>Royal Connect Africa | The Inevitable Connection</title>
   <meta name="description" content="Bridging Uganda and the UAE through curated safaris, ethical trade, and legacy partnerships." />
   <meta name="keywords" content="Uganda safaris, UAE trade, ethical sourcing, gorilla trekking, Dubai commerce, African exports, luxury travel Uganda">
-  
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/brand/favicon.png">
-  
+
+  <!-- Manifest -->
   <link rel="manifest" href="/manifest.json">
-  <link rel="icon" href="/assets/brand/favicon.png">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Royal Connect Africa | Uganda ↔ UAE">
@@ -20,17 +20,17 @@
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Manifest for Mobile -->
-  <link rel="manifest" href="public/manifest.json">
-  <meta name="theme-color" content="#4a1415">
-  
+  <!-- Apple touch icons (fix for webhint/Edge) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/brand/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/brand/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/brand/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/brand/apple-touch-icon.png">
+
   <!-- Fonts: Montserrat for Authority, Lato for Clarity -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
   <!-- Icons & Markdown parser -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  
-  <!-- Markdown Parser for AI Output -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <!-- Tailwind (dev CDN OK; replace with compiled CSS for prod) -->
@@ -76,6 +76,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="styles/main.css">
 </head>
+
 <body class="bg-royal-light text-royal-ink font-sans antialiased selection:bg-royal-maroon selection:text-white">
 
   <!-- Navigation -->
@@ -83,11 +84,19 @@
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-full border-2 border-royal-gold overflow-hidden bg-white shadow-sm flex items-center justify-center relative">
-          <img src="assets/brand/kaizrug-logo.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="RCA" class="w-full h-full object-cover absolute inset-0">
-          <div style="display:none" class="w-full h-full bg-royal-maroon text-royal-gold flex items-center justify-center font-display font-bold text-xl">R</div>
+          <img
+            src="assets/brand/kaizrug-logo.jpg"
+            onerror="this.style.display='none';this.parentElement.querySelector('.logo-fallback').style.display='flex'"
+            alt="RCA"
+            class="w-full h-full object-cover absolute inset-0">
+          <div class="logo-fallback hidden w-full h-full bg-royal-maroon text-royal-gold flex items-center justify-center font-display font-bold text-xl">
+            R
+          </div>
         </div>
+
         <div class="font-display font-bold text-royal-maroon tracking-tight text-lg leading-none">
-          ROYAL CONNECT <br/><span class="text-xs tracking-[0.3em] text-royal-gold uppercase">Africa</span>
+          ROYAL CONNECT <br/>
+          <span class="text-xs tracking-[0.3em] text-royal-gold uppercase">Africa</span>
         </div>
       </div>
 
@@ -100,12 +109,21 @@
       </div>
 
       <div class="md:hidden">
-        <button id="mobile-menu-btn" class="text-royal-maroon focus:outline-none">
-          <i data-lucide="menu" class="w-8 h-8"></i>
+        <!-- Fix: button must have discernible text -->
+        <button
+          id="mobile-menu-btn"
+          type="button"
+          class="text-royal-maroon focus:outline-none"
+          aria-label="Open mobile menu">
+          <i data-lucide="menu" class="w-8 h-8" aria-hidden="true"></i>
         </button>
       </div>
 
-      <a href="https://wa.me/971544392894" target="_blank" class="bg-royal-maroon text-white px-6 py-2 rounded-full text-xs font-bold tracking-widest hover:bg-royal-emerald transition-colors shadow-lg flex items-center gap-2 md:hidden" rel="noopener">
+      <a
+        href="https://wa.me/971544392894"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-royal-maroon text-white px-6 py-2 rounded-full text-xs font-bold tracking-widest hover:bg-royal-emerald transition-colors shadow-lg flex items-center gap-2 md:hidden">
         <i data-lucide="message-circle" class="w-3 h-3"></i> <span>TALK</span>
       </a>
     </div>
@@ -115,10 +133,14 @@
         <a href="#journeys" class="hover:text-royal-maroon transition-colors">Journeys</a>
         <a href="#trade" class="hover:text-royal-maroon transition-colors">Trade</a>
         <a href="#ai-inquiry" class="text-royal-maroon hover:text-royal-gold transition-colors flex items-center justify-center gap-1">
-          <i data-lucide="sparkles" class="w-4 h-4"></i> AI Concierge
+          <i data-lucide="sparkles" class="w-4 h-4" aria-hidden="true"></i> AI Concierge
         </a>
-        <a href="https://wa.me/971544392894" target="_blank" class="bg-royal-maroon text-white py-3 rounded-full hover:bg-royal-emerald transition-colors flex items-center justify-center gap-2">
-          <i data-lucide="message-circle" class="w-5 h-5"></i> Talk on WhatsApp
+        <a
+          href="https://wa.me/971544392894"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-royal-maroon text-white py-3 rounded-full hover:bg-royal-emerald transition-colors flex items-center justify-center gap-2">
+          <i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i> Talk on WhatsApp
         </a>
       </div>
     </div>
@@ -126,42 +148,51 @@
 
   <!-- MAIN: single main landmark for accessibility -->
   <main id="main-content" role="main" class="pt-20">
+
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center" aria-labelledby="hero-heading">
       <div class="absolute inset-0 z-0">
-        <img src="assets/images/uganda-forest.jpg"
-             onerror="this.src='https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=2668&auto=format&fit=crop'"
-             alt="Ugandan forest landscape" class="w-full h-full object-cover" />
+        <img
+          src="assets/images/uganda-forest.jpg"
+          onerror="this.src='https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=2668&auto=format&fit=crop'"
+          alt="Ugandan forest landscape"
+          class="w-full h-full object-cover" />
         <div class="absolute inset-0 hero-overlay" aria-hidden="true"></div>
       </div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20">
-      <div class="max-w-3xl animate-fade-in">
-        <div class="inline-flex items-center gap-2 px-3 py-1 border border-white/30 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] text-white/80 mb-6">
-          <span class="w-2 h-2 bg-royal-gold rounded-full"></span> Uganda ↔ UAE
-        </div>
-        <h1 class="font-display text-5xl md:text-7xl font-800 text-white leading-[1.1] mb-8 drop-shadow-xl">
-          We don't chase outcomes.<br/>
-          <span class="text-royal-gold italic font-serif font-medium">We position gravity.</span>
-        </h1>
-        <p class="text-lg md:text-xl text-white/90 font-light max-w-xl leading-relaxed mb-12 border-l-2 border-royal-gold pl-6">
-          The bridge between East African heritage and Gulf opportunity. Curated safaris, ethical trade, and sovereign partnerships.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a href="#ai-concierge" class="bg-white text-royal-maroon px-8 py-4 rounded-full font-bold text-xs tracking-[0.2em] hover:bg-royal-gold hover:text-white transition-all text-center uppercase flex items-center justify-center gap-2">
-            <i data-lucide="sparkles" class="w-3 h-3"></i> Plan with AI
-          </a>
-          <a href="#journeys" class="border border-white/40 text-white px-8 py-4 rounded-full font-bold text-xs tracking-[0.2em] hover:bg-white/10 transition-all text-center uppercase backdrop-blur-sm">
-            View Itineraries
-          </a>
+      <div class="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20">
+        <div class="max-w-3xl animate-fade-in">
+          <div class="inline-flex items-center gap-2 px-3 py-1 border border-white/30 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] text-white/80 mb-6">
+            <span class="w-2 h-2 bg-royal-gold rounded-full"></span> Uganda ↔ UAE
+          </div>
+
+          <h1 class="font-display text-5xl md:text-7xl font-800 text-white leading-[1.1] mb-8 drop-shadow-xl">
+            We don't chase outcomes.<br/>
+            <span class="text-royal-gold italic font-serif font-medium">We position gravity.</span>
+          </h1>
+
+          <p class="text-lg md:text-xl text-white/90 font-light max-w-xl leading-relaxed mb-12 border-l-2 border-royal-gold pl-6">
+            The bridge between East African heritage and Gulf opportunity. Curated safaris, ethical trade, and sovereign partnerships.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#ai-concierge"
+              class="bg-white text-royal-maroon px-8 py-4 rounded-full font-bold text-xs tracking-[0.2em] hover:bg-royal-gold hover:text-white transition-all text-center uppercase flex items-center justify-center gap-2">
+              <i data-lucide="sparkles" class="w-3 h-3" aria-hidden="true"></i> Plan with AI
+            </a>
+
+            <a href="#journeys"
+              class="border border-white/40 text-white px-8 py-4 rounded-full font-bold text-xs tracking-[0.2em] hover:bg-white/10 transition-all text-center uppercase backdrop-blur-sm">
+              View Itineraries
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 animate-bounce hidden md:block">
-      <i data-lucide="arrow-down" class="w-6 h-6"></i>
-    </div>
-  </section>
+
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 animate-bounce hidden md:block">
+        <i data-lucide="arrow-down" class="w-6 h-6" aria-hidden="true"></i>
+      </div>
+    </section>
 
     <!-- Carousel Section -->
     <section class="py-16 bg-white overflow-hidden border-b border-royal-ink/5" aria-labelledby="visual-evidence">
@@ -176,20 +207,17 @@
           <img src="assets/images/streets.jpg" class="h-64 w-96 object-cover rounded-xl shadow-lg" alt="Streets of Kampala" loading="lazy">
           <img src="assets/images/dubai-souq.jpg" class="h-64 w-96 object-cover rounded-xl shadow-lg" alt="Dubai souq" loading="lazy">
           <img src="assets/images/africa-elephant.jpg" class="h-64 w-96 object-cover rounded-xl shadow-lg" alt="Elephant in Africa" loading="lazy">
-          <!-- duplicates for continuous scroll -->
         </div>
       </div>
     </section>
 
-  <!-- AI Concierge Section – no images here -->
-
-  <!-- Curated Journeys – all cards get lazy loading -->
-  <section id="journeys" class="py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <span class="text-royal-gold text-xs font-bold tracking-[0.3em] uppercase">Expeditions</span>
-        <h2 class="font-display text-4xl font-800 text-royal-ink mt-2">Curated Journeys</h2>
-      </div>
+    <!-- Curated Journeys -->
+    <section id="journeys" class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="text-royal-gold text-xs font-bold tracking-[0.3em] uppercase">Expeditions</span>
+          <h2 class="font-display text-4xl font-800 text-royal-ink mt-2">Curated Journeys</h2>
+        </div>
 
         <div class="grid md:grid-cols-3 gap-8" role="list">
           <!-- Card 1 -->
@@ -202,31 +230,35 @@
               <div class="text-[10px] font-bold text-royal-gold uppercase tracking-widest mb-2">Bwindi Impenetrable Forest</div>
               <h3 id="primate-loop" class="font-display text-2xl font-bold text-white mb-4">The Primate Loop</h3>
               <p class="text-white/70 text-sm mb-6 line-clamp-2">Face-to-face with Mountain Gorillas and Chimpanzees in their natural mist-covered sanctuary.</p>
-              <a href="https://wa.me/971544392894?text=Tell%20me%20about%20The%20Primate%20Loop" target="_blank" rel="noopener" class="inline-flex items-center text-white text-xs font-bold uppercase tracking-widest hover:gap-2 transition-all">
+              <a href="https://wa.me/971544392894?text=Tell%20me%20about%20The%20Primate%20Loop"
+                 target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center text-white text-xs font-bold uppercase tracking-widest hover:gap-2 transition-all">
                 Request Details <i data-lucide="arrow-right" class="w-4 h-4 ml-1" aria-hidden="true"></i>
               </a>
             </div>
           </article>
 
-        <!-- Card 2 -->
-        <div class="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer card-hover transition-all duration-300">
-          <div class="h-[400px]">
-            <img src="assets/images/mountains.jpg" 
-                 onerror="this.src='https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=600&auto=format&fit=crop'" 
-                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                 alt="Safari" 
-                 loading="lazy">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+          <!-- Card 2 -->
+          <div class="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer card-hover transition-all duration-300" role="listitem" aria-labelledby="murchison-falls">
+            <div class="h-[400px]">
+              <img src="assets/images/mountains.jpg"
+                   onerror="this.src='https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=600&auto=format&fit=crop'"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                   alt="Safari"
+                   loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+            </div>
+            <div class="absolute bottom-0 left-0 p-8 w-full">
+              <div class="text-[10px] font-bold text-royal-gold uppercase tracking-widest mb-2">Murchison Falls</div>
+              <h3 id="murchison-falls" class="font-display text-2xl font-bold text-white mb-4">Savanna & Source</h3>
+              <p class="text-white/70 text-sm mb-6 line-clamp-2">Big Five game drives combined with a boat cruise to the base of the world's most powerful waterfall.</p>
+              <a href="https://wa.me/971544392894?text=Tell%20me%20about%20Savanna%20Source"
+                 target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center text-white text-xs font-bold uppercase tracking-widest hover:gap-2 transition-all">
+                Request Details <i data-lucide="arrow-right" class="w-4 h-4 ml-1" aria-hidden="true"></i>
+              </a>
+            </div>
           </div>
-          <div class="absolute bottom-0 left-0 p-8 w-full">
-            <div class="text-[10px] font-bold text-royal-gold uppercase tracking-widest mb-2">Murchison Falls</div>
-            <h3 class="font-display text-2xl font-bold text-white mb-4">Savanna & Source</h3>
-            <p class="text-white/70 text-sm mb-6 line-clamp-2">Big Five game drives combined with a boat cruise to the base of the world's most powerful waterfall.</p>
-            <a href="https://wa.me/971544392894?text=Tell%20me%20about%20Savanna%20Source" target="_blank" class="inline-flex items-center text-white text-xs font-bold uppercase tracking-widest hover:gap-2 transition-all">
-              Request Details <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
-            </a>
-          </div>
-        </div>
 
           <!-- Card 3 -->
           <article role="listitem" class="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer card-hover transition-all duration-300" aria-labelledby="trade-bridge">
@@ -238,7 +270,9 @@
               <div class="text-[10px] font-bold text-royal-gold uppercase tracking-widest mb-2">Kampala ↔ Dubai</div>
               <h3 id="trade-bridge" class="font-display text-2xl font-bold text-white mb-4">The Trade Bridge</h3>
               <p class="text-white/70 text-sm mb-6 line-clamp-2">End-to-end sourcing and logistics for coffee, minerals, and textiles.</p>
-              <a href="https://wa.me/971544392894?text=I%20need%20Trade%20Services" target="_blank" rel="noopener" class="inline-flex items-center text-white text-xs font-bold uppercase tracking-widest hover:gap-2 transition-all">
+              <a href="https://wa.me/971544392894?text=I%20need%20Trade%20Services"
+                 target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center text-white text-xs font-bold uppercase tracking-widest hover:gap-2 transition-all">
                 Start Inquiry <i data-lucide="arrow-right" class="w-4 h-4 ml-1" aria-hidden="true"></i>
               </a>
             </div>
@@ -247,67 +281,82 @@
       </div>
     </section>
 
-  <!-- Trade Section – image gets lazy loading -->
-  <section id="trade" class="py-24 bg-royal-ink text-white relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-1/2 h-full bg-royal-maroon/10 -skew-x-12"></div>
-    <div class="max-w-7xl mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-16 items-center">
-      <div>
-        <span class="text-royal-gold text-xs font-bold tracking-[0.3em] uppercase">Commerce</span>
-        <h2 class="font-display text-4xl font-800 mt-2 mb-6">Ethical Trade Channels.</h2>
-        <p class="text-white/70 leading-relaxed mb-8">
-          We don't just move people; we move value. RCA facilitates the export of high-quality Ugandan commodities to the UAE market.
-        </p>
-        <ul class="space-y-4">
-          <li class="flex items-center gap-3">
-            <i data-lucide="check-circle" class="text-royal-gold w-5 h-5"></i>
-            <span class="text-sm tracking-wide">Specialty Arabica & Robusta Coffee</span>
-          </li>
-          <li class="flex items-center gap-3">
-            <i data-lucide="check-circle" class="text-royal-gold w-5 h-5"></i>
-            <span class="text-sm tracking-wide">Organic Fruits & Shea Butter</span>
-          </li>
-          <li class="flex items-center gap-3">
-            <i data-lucide="check-circle" class="text-royal-gold w-5 h-5"></i>
-            <span class="text-sm tracking-wide">Verified Mineral Sourcing</span>
-          </li>
-        </ul>
-        
-        <!-- AI-Powered Inquiry -->
-        <section id="ai-inquiry" class="py-20 bg-[#faf9f6]">
-          <div class="max-w-4xl mx-auto px-6">
-           <div class="text-center mb-12">
-              <h2 class="text-4xl md:text-5xl font-serif text-[#4a1415] mb-3">AI-Powered Inquiry</h2>
-              <p class="text-lg text-gray-600 max-w-md mx-auto">Instant tailored safari plans or trade proposals — powered by intelligence, rooted in legacy.</p>
-           </div>
+    <!-- Trade Section -->
+    <section id="trade" class="py-24 bg-royal-ink text-white relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-1/2 h-full bg-royal-maroon/10 -skew-x-12"></div>
+
+      <div class="max-w-7xl mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-16 items-center">
+        <div>
+          <span class="text-royal-gold text-xs font-bold tracking-[0.3em] uppercase">Commerce</span>
+          <h2 class="font-display text-4xl font-800 mt-2 mb-6">Ethical Trade Channels.</h2>
+
+          <p class="text-white/70 leading-relaxed mb-8">
+            We don't just move people; we move value. RCA facilitates the export of high-quality Ugandan commodities to the UAE market.
+          </p>
+
+          <ul class="space-y-4">
+            <li class="flex items-center gap-3">
+              <i data-lucide="check-circle" class="text-royal-gold w-5 h-5" aria-hidden="true"></i>
+              <span class="text-sm tracking-wide">Specialty Arabica & Robusta Coffee</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check-circle" class="text-royal-gold w-5 h-5" aria-hidden="true"></i>
+              <span class="text-sm tracking-wide">Organic Fruits & Shea Butter</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check-circle" class="text-royal-gold w-5 h-5" aria-hidden="true"></i>
+              <span class="text-sm tracking-wide">Verified Mineral Sourcing</span>
+            </li>
+          </ul>
+
+          <!-- AI-Powered Inquiry -->
+          <section id="ai-inquiry" class="py-20 bg-[#faf9f6]">
+            <div class="max-w-4xl mx-auto px-6">
+              <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-serif text-[#4a1415] mb-3">AI-Powered Inquiry</h2>
+                <p class="text-lg text-gray-600 max-w-md mx-auto">Instant tailored safari plans or trade proposals — powered by intelligence, rooted in legacy.</p>
+              </div>
 
               <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
                 <div class="flex border-b" role="tablist" aria-label="AI modes">
-                  <button data-mode="safari" class="tab-btn flex-1 py-5 text-lg font-medium border-b-4 border-[#4a1415] text-[#4a1415] transition" role="tab" aria-selected="true">Safari Planner</button>
-                  <button data-mode="trade" class="tab-btn flex-1 py-5 text-lg font-medium text-gray-500 hover:text-[#4a1415] transition" role="tab" aria-selected="false">Trade Inquiry</button>
+                  <button data-mode="safari"
+                          class="tab-btn flex-1 py-5 text-lg font-medium border-b-4 border-[#4a1415] text-[#4a1415] transition"
+                          type="button"
+                          role="tab"
+                          aria-selected="true">
+                    Safari Planner
+                  </button>
+
+                  <button data-mode="trade"
+                          class="tab-btn flex-1 py-5 text-lg font-medium text-gray-500 hover:text-[#4a1415] transition"
+                          type="button"
+                          role="tab"
+                          aria-selected="false">
+                    Trade Inquiry
+                  </button>
                 </div>
 
-              <!-- Form -->
-              <div class="p-8 md:p-12">
-                <form id="ai-form" class="space-y-6">
-                  <textarea 
-                    id="query" 
-                    rows="5"
-                    class="w-full px-6 py-5 border border-gray-200 rounded-2xl focus:outline-none focus:border-[#4a1415] resize-y text-lg"
-                    placeholder="Tell us your dream safari dates, group size, or trade requirements (coffee, minerals, textiles...)"></textarea>
-          
-                  <button 
-                    type="submit"
-                    id="generate-btn"
-                    class="w-full bg-[#4a1415] hover:bg-black text-white font-medium py-5 rounded-2xl text-xl transition flex items-center justify-center gap-3">
-                    <span>Generate Draft</span>
-                    <span id="loader" class="hidden w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                  </button>
-                </form>
+                <div class="p-8 md:p-12">
+                  <form id="ai-form" class="space-y-6">
+                    <textarea
+                      id="query"
+                      rows="5"
+                      class="w-full px-6 py-5 border border-gray-200 rounded-2xl focus:outline-none focus:border-[#4a1415] resize-y text-lg"
+                      placeholder="Tell us your dream safari dates, group size, or trade requirements (coffee, minerals, textiles...)"></textarea>
+
+                    <button
+                      type="submit"
+                      id="generate-btn"
+                      class="w-full bg-[#4a1415] hover:bg-black text-white font-medium py-5 rounded-2xl text-xl transition flex items-center justify-center gap-3">
+                      <span>Generate Draft</span>
+                      <span id="loader" class="hidden w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" aria-hidden="true"></span>
+                    </button>
+                  </form>
 
                   <div id="result" class="hidden mt-10 p-8 bg-[#faf9f6] rounded-2xl border border-gray-100" aria-live="polite">
                     <div class="flex justify-between items-start mb-4">
                       <h3 class="font-serif text-2xl text-[#4a1415]" id="result-title">Your Draft</h3>
-                      <button id="copy-btn" class="text-sm text-gray-500 hover:text-[#4a1415] flex items-center gap-1" aria-label="Copy draft">
+                      <button id="copy-btn" type="button" class="text-sm text-gray-500 hover:text-[#4a1415] flex items-center gap-1" aria-label="Copy draft">
                         📋 Copy
                       </button>
                     </div>
@@ -325,17 +374,23 @@
 
             <div>
               <label for="contact-name" class="block text-sm font-medium text-white/80 mb-1">Your Name</label>
-              <input id="contact-name" type="text" name="name" required class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-royal-gold" placeholder="Your Name" />
+              <input id="contact-name" type="text" name="name" required
+                     class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-royal-gold"
+                     placeholder="Your Name" />
             </div>
 
             <div>
               <label for="contact-email" class="block text-sm font-medium text-white/80 mb-1">Email</label>
-              <input id="contact-email" type="email" name="email" required class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-royal-gold" placeholder="your@email.com" />
+              <input id="contact-email" type="email" name="email" required
+                     class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-royal-gold"
+                     placeholder="your@email.com" />
             </div>
 
             <div>
               <label for="contact-message" class="block text-sm font-medium text-white/80 mb-1">Message / Products Interested In</label>
-              <textarea id="contact-message" name="message" rows="4" required class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-royal-gold" placeholder="e.g. Interested in Arabica coffee samples and pricing..."></textarea>
+              <textarea id="contact-message" name="message" rows="4" required
+                        class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-royal-gold"
+                        placeholder="e.g. Interested in Arabica coffee samples and pricing..."></textarea>
             </div>
 
             <button type="submit" class="w-full bg-white text-royal-ink px-8 py-4 rounded-full font-bold text-xs tracking-[0.2em] hover:bg-royal-gold transition-all">
@@ -343,11 +398,14 @@
             </button>
           </form>
 
-        <div id="form-status" class="mt-4 text-center text-sm"></div>
-      </div>
+          <div id="form-status" class="mt-4 text-center text-sm"></div>
+        </div>
 
         <div class="h-[400px] bg-white/5 rounded-2xl border border-white/10 flex items-center justify-center relative overflow-hidden">
-          <img src="assets/images/dubai-souq.jpg" class="w-full h-full object-cover opacity-60 hover:opacity-80 transition-opacity" alt="Dubai souq" loading="lazy">
+          <img src="assets/images/dubai-souq.jpg"
+               class="w-full h-full object-cover opacity-60 hover:opacity-80 transition-opacity"
+               alt="Dubai souq"
+               loading="lazy">
           <div class="absolute inset-0 flex items-center justify-center">
             <div class="text-center">
               <h3 class="font-display text-3xl font-bold">100%</h3>
@@ -375,26 +433,29 @@
       <div class="flex flex-wrap gap-12 text-[10px] font-bold uppercase tracking-[0.2em] text-royal-ink/80">
         <div class="flex flex-col gap-4">
           <span class="text-royal-gold">Contact</span>
-          <a href="https://wa.me/971544392894" target="_blank" class="hover:text-royal-maroon">WhatsApp UAE</a>
+          <a href="https://wa.me/971544392894" target="_blank" rel="noopener noreferrer" class="hover:text-royal-maroon">WhatsApp UAE</a>
           <a href="mailto:kaizrug.writer@gmail.com" class="hover:text-royal-maroon">Email Desk</a>
         </div>
+
         <div class="flex flex-col gap-4">
           <span class="text-royal-gold">Social</span>
-          <a href="https://www.linkedin.com/in/kaizire-joel-1b4100153" target="_blank" class="hover:text-royal-maroon" rel="noopener">LinkedIn</a>
-          <a href="https://www.instagram.com/royal_connectafrica" target="_blank" class="hover:text-royal-maroon" rel="noopener">Instagram</a>
+          <a href="https://www.linkedin.com/in/kaizire-joel-1b4100153" target="_blank" rel="noopener noreferrer" class="hover:text-royal-maroon" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.instagram.com/royal_connectafrica" target="_blank" rel="noopener noreferrer" class="hover:text-royal-maroon" rel="noopener noreferrer">Instagram</a>
         </div>
       </div>
     </div>
-    
+
     <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-royal-ink/5 text-[10px] text-royal-ink/40 flex justify-between">
       <span>© 2026 Royal Connect Africa. Kaizrug HQ.</span>
       <span>Kampala • Dubai</span>
     </div>
   </footer>
 
+  <!-- NOTE: If you want to fully remove inline <style>, move this rule into styles/main.css -->
   <style>
     #result { transition: all 0.2s ease; }
   </style>
+
   <script src="scripts/main.js" defer></script>
 </body>
 </html>
