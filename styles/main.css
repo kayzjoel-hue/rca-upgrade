@@ -20,8 +20,8 @@
 /* Glass Navigation */
 .glass-nav {
   background: rgba(250, 249, 246, 0.95);
-  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(74, 20, 21, 0.08);
 }
 
@@ -90,8 +90,8 @@ textarea:focus {
 
 /* Hide Scrollbar */
 .no-scrollbar {
-  scrollbar-width: none;
   -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .no-scrollbar::-webkit-scrollbar {
