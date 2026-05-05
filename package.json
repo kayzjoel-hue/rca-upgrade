@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/kayzjoel-hue/rca-upgrade#readme",
   "dependencies": {
+    "@vercel/speed-insights": "^2.0.0",
     "cors": "^2.8.6",
     "express": "^5.2.1"
   }
