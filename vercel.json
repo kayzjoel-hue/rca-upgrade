@@ -1,10 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "echo 'No build needed'",
   "outputDirectory": ".",
-  "env": {
-    "GEMINI_API_KEY": "@gemini_api_key"
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",
